@@ -1,5 +1,12 @@
 {
   "compilerOptions": {
+    "baseUrl": ".", // this must be specified if "paths" is specified.
+    "paths": {
+      "@components/*": ["components/*"],
+      "@components/*/*": ["components/*/*"],
+      "@types": ["types/index.d.ts"],
+      "@jotai": ["stores/index.ts"]
+    },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
