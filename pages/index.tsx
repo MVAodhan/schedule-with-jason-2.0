@@ -5,8 +5,6 @@ import { episodesAtom } from 'stores';
 import { useAtom } from 'jotai';
 import Card from '@components/Card';
 
-import { Episode } from '@types';
-
 // import { Inter } from '@next/font/google'
 
 // const inter = Inter({ subsets: ['latin'] })

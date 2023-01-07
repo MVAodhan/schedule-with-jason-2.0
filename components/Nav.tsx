@@ -4,6 +4,7 @@ import Link from 'next/link';
 const pages: Page[] = [
   { id: 1, name: 'Home', path: '/' },
   { id: 2, name: 'Add Episode', path: '/add' },
+  { id: 3, name: 'Publish Details', path: '/publish' },
 ];
 
 import { SlMenu } from 'react-icons/sl';
