@@ -1,8 +1,13 @@
 import Nav from '@components/Nav';
 import Head from 'next/head';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
+import { EpisodeApi } from '@types';
 
+import Calendar from 'components/page-components/publish/calendar';
+import Sanity from 'components/page-components/publish/sanity';
+import Youtube from 'components/page-components/publish/youtube';
+import Twitter from 'components/page-components/publish/twitter';
 const tabs = [
   { header: 'Sanity Details', id: 'sanity' },
   { header: 'Calendar Details', id: 'calendar' },
@@ -10,38 +15,28 @@ const tabs = [
   { header: 'Twitter Details', id: 'twitter' },
 ];
 
-export async function getServerSideProps() {
-  const res = await fetch(
-    'https://www.learnwithjason.dev/api/v2/schedule'
-  ).then((res) => res.json());
-
-  return {
-    props: {
-      episodes: res,
-    },
-  };
-}
-
-const Publish = ({ episodes }: { episodes: any }) => {
+const Publish = ({ episodes }: { episodes: EpisodeApi[] }) => {
   const [activeTab, setActiveTab] = useState<string>('sanity');
 
   const router = useRouter();
   const { date } = router.query;
-  const episode = episodes.filter((episode: any) => episode.date === date);
+  const episode = episodes.filter(
+    (episode: EpisodeApi) => episode.date === date
+  );
 
   const renderTab = () => {
     switch (activeTab) {
       case 'calendar':
-        console.log('calendar');
+        return <Calendar episode={episode[0]} />;
         break;
       case 'youtube':
-        console.log('youtube');
+        return <Youtube episode={episode[0]} />;
         break;
       case 'twitter':
-        console.log('twitter');
+        return <Twitter episode={episode[0]} />;
         break;
       default:
-        console.log(`sanity`);
+        return <Sanity episode={episode[0]} />;
     }
   };
 
@@ -75,5 +70,17 @@ const Publish = ({ episodes }: { episodes: any }) => {
     </>
   );
 };
+
+export async function getServerSideProps() {
+  const res = await fetch(
+    'https://www.learnwithjason.dev/api/v2/schedule'
+  ).then((res) => res.json());
+
+  return {
+    props: {
+      episodes: res,
+    },
+  };
+}
 
 export default Publish;

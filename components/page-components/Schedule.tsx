@@ -15,17 +15,7 @@ const Schedule = () => {
     <div className="w-full h-full flex flex-col items-center ">
       <div className="w-full flex">
         <div className="flex flex-col items-center justify-center w-1/2">
-          <label
-            className="label"
-            onClick={() => {
-              if (guestRef.current?.value !== null) {
-                const string = guestRef.current?.value.toString() as string;
-                navigator.clipboard.writeText(string);
-              }
-            }}
-          >
-            Guest
-          </label>
+          <label className="label">Guest</label>
           <input
             ref={guestRef}
             type="text"
