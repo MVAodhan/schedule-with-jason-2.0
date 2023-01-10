@@ -5,7 +5,8 @@
       "@components/*": ["components/*"],
       "@components/*/*": ["components/*/*"],
       "@types": ["types/index.d.ts"],
-      "@jotai": ["stores/index.ts"]
+      "@jotai": ["stores/index.ts"],
+      "@utils": ["utils/index"]
     },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],

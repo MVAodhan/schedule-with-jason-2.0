@@ -1,5 +1,10 @@
 import { useRef } from 'react';
 
+import { episodesAtom } from 'stores';
+import { useAtom } from 'jotai';
+
+import { DateTime, DateTimeJSOptions } from 'luxon';
+
 const Schedule = () => {
   const guestRef = useRef<HTMLInputElement | null>(null);
   const titleRef = useRef<HTMLInputElement | null>(null);
@@ -11,6 +16,7 @@ const Schedule = () => {
   const techRef = useRef<HTMLInputElement | null>(null);
   const selectRef = useRef<HTMLSelectElement | null>(null);
 
+  const [episodes, setEpisodes] = useAtom(episodesAtom);
   return (
     <div className="w-full h-full flex flex-col items-center ">
       <div className="w-full flex">
@@ -65,15 +71,13 @@ const Schedule = () => {
       <select
         ref={selectRef}
         className="select select-bordered w-full max-w-xs mt-10"
-        onChange={() => {
-          console.log(selectRef.current?.value);
-        }}
+        onChange={() => {}}
       >
         <option disabled selected>
           Timezone
         </option>
-        <option>PST</option>
-        <option>NZST</option>
+        <option value="America/Los_Angeles">PST</option>
+        <option value="Pacific/Auckland">NZST</option>
       </select>
       <label className="label">Twitter Description</label>
       <textarea

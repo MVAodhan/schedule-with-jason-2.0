@@ -20,6 +20,7 @@ const Publish = ({ episodes }: { episodes: EpisodeApi[] }) => {
 
   const router = useRouter();
   const { date } = router.query;
+
   const episode = episodes.filter(
     (episode: EpisodeApi) => episode.date === date
   );
@@ -50,7 +51,7 @@ const Publish = ({ episodes }: { episodes: EpisodeApi[] }) => {
       </Head>
       <main className="w-screen  flex flex-col items-center">
         <Nav />
-        <section className="h-full w-5/12 ">
+        <section className="h-full w-fullmd:w-8/12 ">
           <div className="tabs tabs-boxed justify-center bg-[#FFFFFF]">
             <>
               {tabs.map((tab, i) => (

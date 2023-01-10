@@ -12,7 +12,7 @@ const sanity = ({ episode }: { episode: EpisodeApi }) => {
   const date = new Date(episode.date);
   const timeZone = 'America/Los_Angeles';
   const USDate = utcToZonedTime(date, timeZone);
-  const pattern = 'HH:mm dd MMM';
+  const pattern = ' dd MMM HH:mm';
   const USDateFormatted = format(USDate, pattern, {
     timeZone: 'America/Los_Angeles',
   });
@@ -58,7 +58,7 @@ const sanity = ({ episode }: { episode: EpisodeApi }) => {
       <div className="flex">
         <div className="flex">
           <div className="mt-10">US Date: {USDateFormatted}</div>
-          <div className="mt-10 pl-10">NZ Date: {USDateFormatted}</div>
+          <div className="mt-10 pl-10">NZ Date: {NZDateFormatted}</div>
         </div>
       </div>
       <div className="flex items-center justify-center w-full mt-10">

@@ -10,6 +10,7 @@ export interface Episode {
   description: string;
   date: string;
   guest: string;
+  timezone: string;
 }
 
 export interface EpisodeApi {
@@ -30,4 +31,14 @@ export interface EpisodeApi {
   tags: null | string[];
   title: string;
   uri: string;
+}
+
+export interface IDateTime {
+  c: {
+    day: number;
+    month: number;
+    year?: number;
+    hour: number;
+    minute: number;
+  };
 }

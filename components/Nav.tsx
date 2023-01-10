@@ -4,7 +4,6 @@ import Link from 'next/link';
 const pages: Page[] = [
   { id: 1, name: 'Home', path: '/' },
   { id: 2, name: 'Add Episode', path: '/add' },
-  { id: 3, name: 'Publish Details', path: '/publish' },
 ];
 
 import { SlMenu } from 'react-icons/sl';
@@ -13,9 +12,11 @@ const Nav = () => {
   return (
     <div className="navbar bg-base-100">
       <div className="flex-1">
-        <a className="btn btn-ghost normal-case text-xl">
-          Scheduled with Jason
-        </a>
+        <Link href="/">
+          <div className="btn btn-ghost normal-case text-xl">
+            Scheduled with Jason
+          </div>
+        </Link>
       </div>
       <div className="flex-none">
         <ul className="menu menu-horizontal px-1 hidden sm:flex">
