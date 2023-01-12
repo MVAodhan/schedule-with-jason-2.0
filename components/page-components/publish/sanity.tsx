@@ -1,24 +1,14 @@
 import { useRef } from 'react';
 import { EpisodeApi } from '@types';
 import { VscCopy } from 'react-icons/vsc';
-
-const { utcToZonedTime, format, zonedTimeToUtc } = require('date-fns-tz');
+import { getDates } from '@utils';
 
 const sanity = ({ episode }: { episode: EpisodeApi }) => {
   const nameRef = useRef<HTMLInputElement | null>(null);
   const titleRef = useRef<HTMLInputElement | null>(null);
   const descRef = useRef<HTMLTextAreaElement | null>(null);
 
-  const date = new Date(episode.date);
-  const timeZone = 'America/Los_Angeles';
-  const USDate = utcToZonedTime(date, timeZone);
-  const pattern = ' dd MMM HH:mm';
-  const USDateFormatted = format(USDate, pattern, {
-    timeZone: 'America/Los_Angeles',
-  });
-  const NZDateFormatted = format(date, pattern, {
-    timeZone: 'Pacific/Auckland',
-  });
+  const { nzDate, usDate } = getDates(episode.date, 'utc');
 
   const copyValue = (ref: any) => {
     if (ref.current?.value !== null) {
@@ -57,8 +47,8 @@ const sanity = ({ episode }: { episode: EpisodeApi }) => {
       </div>
       <div className="flex">
         <div className="flex">
-          <div className="mt-10">US Date: {USDateFormatted}</div>
-          <div className="mt-10 pl-10">NZ Date: {NZDateFormatted}</div>
+          <div className="mt-10">US Date: {usDate}</div>
+          <div className="mt-10 pl-10">NZ Date: {nzDate}</div>
         </div>
       </div>
       <div className="flex items-center justify-center w-full mt-10">

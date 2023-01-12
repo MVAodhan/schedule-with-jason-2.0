@@ -23,6 +23,10 @@ export const getDates = (date: string, timezone: string) => {
   } else {
     nzDate = zonedDt.setZone('Pacific/Auckland').toFormat('ff');
   }
+  if (zonedDt.zone.name === 'utc') {
+    usDate = zonedDt.setZone('America/Los_Angeles').toFormat('ff');
+    nzDate = zonedDt.setZone('Pacific/Auckland').toFormat('ff');
+  }
 
   return { usDate, nzDate };
 };

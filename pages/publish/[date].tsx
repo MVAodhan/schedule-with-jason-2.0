@@ -51,9 +51,9 @@ const Publish = ({ episodes }: { episodes: EpisodeApi[] }) => {
       </Head>
       <main className="w-screen  flex flex-col items-center">
         <Nav />
-        <section className="h-full w-fullmd:w-8/12 ">
-          <div className="tabs tabs-boxed justify-center bg-[#FFFFFF]">
-            <>
+        <section className="w-full md:w-8/12">
+          <div className="tabs tabs-boxed  justify-center bg-[#FFFFFF]">
+            <div>
               {tabs.map((tab, i) => (
                 <a
                   key={i}
@@ -63,9 +63,9 @@ const Publish = ({ episodes }: { episodes: EpisodeApi[] }) => {
                   {tab.header}
                 </a>
               ))}
-              {renderTab()}
-            </>
+            </div>
           </div>
+          {renderTab()}
         </section>
       </main>
     </>
