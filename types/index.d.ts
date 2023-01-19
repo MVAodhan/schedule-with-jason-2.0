@@ -5,12 +5,24 @@ export interface Page {
 }
 
 export interface Episode {
-  id: number;
-  title: string;
-  description: string;
   date: string;
-  guest: string;
-  timezone: string;
+  description: string;
+  guest: {
+    image: string;
+    name: string;
+    twitter: string;
+  };
+  host: {
+    image: string;
+    name: string;
+    twitter: string;
+  };
+  id: string;
+  slug: string;
+  tags: [];
+  title: string;
+  uri: string;
+  timezone?: string;
 }
 
 export interface EpisodeApi {
@@ -41,4 +53,9 @@ export interface IDateTime {
     hour: number;
     minute: number;
   };
+}
+
+export interface ILink {
+  id: number;
+  value: string;
 }

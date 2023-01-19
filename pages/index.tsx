@@ -4,13 +4,23 @@ import Nav from '@components/Nav';
 import { episodesAtom } from 'stores';
 import { useAtom } from 'jotai';
 import Card from '@components/Card';
-
+import { useEffect } from 'react';
+import axios from 'axios';
+import { Episode, EpisodeApi } from '@types';
 // import { Inter } from '@next/font/google'
 
 // const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   const [episodes, setEpisodes] = useAtom(episodesAtom);
+  const getEpisodes = async () => {
+    const res = await axios.get('/api/get');
+    setEpisodes(res.data);
+  };
+
+  useEffect(() => {
+    getEpisodes();
+  }, []);
 
   return (
     <>

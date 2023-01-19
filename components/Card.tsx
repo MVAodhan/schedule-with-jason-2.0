@@ -6,9 +6,10 @@ import { getDates, getUTCDate } from 'utils';
 const Card = ({ episode }: { episode: Episode }) => {
   const [usDate, setUsDate] = useState<string>('');
   const [nzDate, setNzDate] = useState<string>('');
-  const utc = getUTCDate(episode.date, episode.timezone);
+  const utc = getUTCDate(episode.date, 'America/Los_Angeles');
+  const timezone = episode.timezone ? episode.timezone : 'America/Los_Angeles';
   useEffect(() => {
-    let { usDate, nzDate } = getDates(episode.date, episode.timezone);
+    let { usDate, nzDate } = getDates(episode.date, 'America/Los_Angeles');
 
     setUsDate(usDate);
     setNzDate(nzDate);
@@ -19,7 +20,7 @@ const Card = ({ episode }: { episode: Episode }) => {
       <div className="card w-full bg-base-100 shadow-xl mx-auto ring ring-[#FF9EB1]">
         <div className="card-body ">
           <h2 className="card-title">{episode.title}</h2>
-          <p>{episode.guest}</p>
+          <p>{episode.guest.name}</p>
           <div className="flex flex-row ">
             <div className="w-1/2">US Date: {usDate}</div>
             <div>NZ Date: {nzDate}</div>

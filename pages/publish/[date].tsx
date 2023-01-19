@@ -8,6 +8,7 @@ import Calendar from 'components/page-components/publish/calendar';
 import Sanity from 'components/page-components/publish/sanity';
 import Youtube from 'components/page-components/publish/youtube';
 import Twitter from 'components/page-components/publish/twitter';
+import { getUTCDate } from '@utils';
 const tabs = [
   { header: 'Sanity Details', id: 'sanity' },
   { header: 'Calendar Details', id: 'calendar' },
@@ -19,11 +20,15 @@ const Publish = ({ episodes }: { episodes: EpisodeApi[] }) => {
   const [activeTab, setActiveTab] = useState<string>('sanity');
 
   const router = useRouter();
-  const { date } = router.query;
+  let { date } = router.query;
+  console.log('date', date);
+
+  const utcDate = getUTCDate(date as string, 'America/Los_Angeles');
 
   const episode = episodes.filter(
-    (episode: EpisodeApi) => episode.date === date
+    (episode: EpisodeApi) => episode.date === utcDate
   );
+  console.log('episode from data page', episode);
 
   const renderTab = () => {
     switch (activeTab) {
@@ -51,7 +56,7 @@ const Publish = ({ episodes }: { episodes: EpisodeApi[] }) => {
       </Head>
       <main className="w-screen  flex flex-col items-center">
         <Nav />
-        <section className="w-full md:w-8/12">
+        <section className="w-full md:w-8/12 flex flex-col items-center ">
           <div className="tabs tabs-boxed  justify-center bg-[#FFFFFF]">
             <div>
               {tabs.map((tab, i) => (

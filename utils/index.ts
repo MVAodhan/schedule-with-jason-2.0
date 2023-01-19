@@ -15,13 +15,10 @@ export const getDates = (date: string, timezone: string) => {
   );
   if (zonedDt.zone.name === 'America/Los_Angeles') {
     usDate = zonedDt.toFormat('ff');
+    nzDate = zonedDt.setZone('Pacific/Auckland').toFormat('ff');
   } else {
     usDate = zonedDt.setZone('America/Los_Angeles').toFormat('ff');
-  }
-  if (zonedDt.zone.name === 'Pacific/Auckland') {
     nzDate = zonedDt.toFormat('ff');
-  } else {
-    nzDate = zonedDt.setZone('Pacific/Auckland').toFormat('ff');
   }
   if (zonedDt.zone.name === 'utc') {
     usDate = zonedDt.setZone('America/Los_Angeles').toFormat('ff');
