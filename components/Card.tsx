@@ -9,7 +9,7 @@ const Card = ({ episode }: { episode: Episode }) => {
   const utc = getUTCDate(episode.date, 'America/Los_Angeles');
   const timezone = episode.timezone ? episode.timezone : 'America/Los_Angeles';
   useEffect(() => {
-    let { usDate, nzDate } = getDates(episode.date, 'America/Los_Angeles');
+    let { usDate, nzDate } = getDates(episode.date, timezone);
 
     setUsDate(usDate);
     setNzDate(nzDate);

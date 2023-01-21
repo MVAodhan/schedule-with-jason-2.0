@@ -56,6 +56,6 @@ export interface IDateTime {
 }
 
 export interface ILink {
-  id: number;
-  value: string;
+  id: string;
+  value: string | undefined;
 }

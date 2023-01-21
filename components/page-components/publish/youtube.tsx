@@ -1,9 +1,10 @@
+import { Episode } from '@types';
 import { useState } from 'react';
 import Generation from './generation';
 import Publishing from './publishing';
 
-const youtube = ({ episode }: { episode: any }) => {
-  const [activeTab, setActiveTab] = useState<string>('publishing');
+const youtube = ({ episode }: { episode: Episode }) => {
+  const [activeTab, setActiveTab] = useState<string>('generation');
   const renderTab = () => {
     switch (activeTab) {
       case 'generation':
@@ -14,8 +15,8 @@ const youtube = ({ episode }: { episode: any }) => {
     }
   };
   return (
-    <div className="flex flex-col items-center">
-      <div className="tabs tabs-boxed w-full flex justify-center bg-[#FFFFFF]">
+    <div className="flex flex-col items-center w-full">
+      <div className="tabs tabs-boxed w-full flex justify-center bg-[#FFFFFF] ">
         <a
           className={`tab ${activeTab === 'generation' ? 'tab-active' : ''}`}
           onClick={() => setActiveTab('generation')}

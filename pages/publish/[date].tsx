@@ -2,7 +2,7 @@ import Nav from '@components/Nav';
 import Head from 'next/head';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { EpisodeApi } from '@types';
+import { EpisodeApi, Episode } from '@types';
 
 import Calendar from 'components/page-components/publish/calendar';
 import Sanity from 'components/page-components/publish/sanity';
@@ -21,13 +21,10 @@ const Publish = ({ episodes }: { episodes: EpisodeApi[] }) => {
 
   const router = useRouter();
   let { date } = router.query;
-  console.log('date', date);
 
   const utcDate = getUTCDate(date as string, 'America/Los_Angeles');
 
-  const episode = episodes.filter(
-    (episode: EpisodeApi) => episode.date === utcDate
-  );
+  const episode = episodes.filter((episode) => episode.date === utcDate);
   console.log('episode from data page', episode);
 
   const renderTab = () => {
@@ -56,7 +53,7 @@ const Publish = ({ episodes }: { episodes: EpisodeApi[] }) => {
       </Head>
       <main className="w-screen  flex flex-col items-center">
         <Nav />
-        <section className="w-full md:w-8/12 flex flex-col items-center ">
+        <section className="w-full md:w-10/12 flex flex-col items-center ">
           <div className="tabs tabs-boxed  justify-center bg-[#FFFFFF]">
             <div>
               {tabs.map((tab, i) => (

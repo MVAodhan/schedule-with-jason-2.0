@@ -1,11 +1,22 @@
 import { ILink } from '@types';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-const link = ({ links }: { links: ILink[] }) => {
+
+const link = ({
+  id,
+  defaultValue,
+  link,
+  links,
+}: {
+  id: string;
+  defaultValue: string | undefined;
+  link: ILink;
+  links: ILink[] | [];
+}) => {
   let linkRef = useRef<HTMLInputElement>(null);
-  const handleChange = () => {
+  const handleChange = (links: ILink[]) => {
     for (const link in links) {
-      if (links && links[link].id === id) {
+      if (links.length > 1 && links[link].id === id) {
         links[link].value = linkRef.current?.value;
       } else {
         const link = {
@@ -19,11 +30,15 @@ const link = ({ links }: { links: ILink[] }) => {
     <div>
       <label className="label"></label>
       <input
-        ref={linkRef}
+        defaultValue={link.value}
         type="text"
         placeholder="Type here"
         className="input input-bordered w-full max-w-xs"
-        // onChange={() => handleChange(links)}
+        onChange={() => {
+          if (links.length > 1) {
+            handleChange(links);
+          }
+        }}
       />
     </div>
   );
