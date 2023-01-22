@@ -24,8 +24,7 @@ const Publish = ({ episodes }: { episodes: EpisodeApi[] }) => {
 
   const utcDate = getUTCDate(date as string, 'America/Los_Angeles');
 
-  const episode = episodes.filter((episode) => episode.date === utcDate);
-  console.log('episode from data page', episode);
+  const episode = episodes.filter((episode) => episode.date === utcDate) 
 
   const renderTab = () => {
     switch (activeTab) {

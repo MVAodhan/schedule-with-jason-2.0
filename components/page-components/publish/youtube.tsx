@@ -1,9 +1,9 @@
-import { Episode } from '@types';
+import { EpisodeApi } from '@types';
 import { useState } from 'react';
 import Generation from './generation';
 import Publishing from './publishing';
 
-const youtube = ({ episode }: { episode: Episode }) => {
+const youtube = ({ episode }: { episode: EpisodeApi }) => {
   const [activeTab, setActiveTab] = useState<string>('generation');
   const renderTab = () => {
     switch (activeTab) {

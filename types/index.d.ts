@@ -57,5 +57,6 @@ export interface IDateTime {
 
 export interface ILink {
   id: string;
+  sanityID: string | undefined;
   value: string | undefined;
 }

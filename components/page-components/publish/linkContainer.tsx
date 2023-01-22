@@ -1,33 +1,31 @@
-import React from 'react';
 import { ILink } from '@types';
 import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import Link from './link';
+
 const linkContainer = () => {
-  const [links, setLinks] = useState<ILink[] | []>([
-    {
-      id: '1',
-      value: 'test link',
-    },
-  ]);
+  const [links, setLinks] = useState<ILink[] | []>([]);
+  const addLink = () => {
+    setLinks([...links, { id: uuidv4(), sanityID: '', value: '' }]);
+  };
+
+  console.log(links);
 
   return (
-    <div className="flex flex-col items-center">
-      <button className="btn btn-outline">Add Link</button>
-      {links.length > 0 &&
-        links.map((link) => {
-          if (link.id === 'repo' || link.id === 'demo') {
-            return;
-          }
-          return (
-            <Link
-              key={link.id}
-              id={link.id}
-              defaultValue={link.value}
-              link={link}
-              links={links}
-            />
-          );
-        })}
+    <div className="w-full flex flex-col items-center ">
+      <div>
+        <button className="btn btn-outline mt-5" onClick={addLink}>
+          Add Link
+        </button>
+      </div>
+      <div className=" max-h-48 overflow-scroll overflow-x-hidden w-full">
+        {links.length > 0 &&
+          links.map((link) => {
+            return (
+              <Link key={link.id} id={link.id} link={link} links={links} />
+            );
+          })}
+      </div>
     </div>
   );
 };
