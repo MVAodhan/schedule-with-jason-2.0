@@ -9,8 +9,6 @@ const linkContainer = () => {
     setLinks([...links, { id: uuidv4(), sanityID: '', value: '' }]);
   };
 
-  console.log(links);
-
   return (
     <div className="w-full flex flex-col items-center ">
       <div>

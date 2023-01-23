@@ -11,7 +11,7 @@ const youtube = ({ episode }: { episode: EpisodeApi }) => {
         return <Generation />;
         break;
       default:
-        return <Publishing />;
+        return <Publishing episode={episode} />;
     }
   };
   return (

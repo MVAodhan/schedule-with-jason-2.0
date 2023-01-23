@@ -7,7 +7,6 @@ const Initial = ({ episode }: { episode: EpisodeApi }) => {
   const titleRef = useRef<HTMLInputElement | null>(null);
   const descRef = useRef<HTMLTextAreaElement | null>(null);
 
-  console.log(episode.date);
   const { nzDate, usDate } = getDates(episode.date, 'utc');
 
   const copyValue = (ref: any) => {
