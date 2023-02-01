@@ -7,8 +7,6 @@ import Card from '@components/Card';
 import { useEffect } from 'react';
 import axios from 'axios';
 
-import { useSupabase } from 'utils/supabase';
-
 export default function Home() {
   const [episodes, setEpisodes] = useAtom(episodesAtom);
   const getEpisodes = async () => {
@@ -33,9 +31,9 @@ export default function Home() {
         <div className="w-full h-full ">
           <div className="w-4/5 h-full mx-auto pt-10">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
-              {episodes.map((ep) => (
+              {/* {episodes.map((ep) => (
                 <Card key={ep.id} episode={ep} />
-              ))}
+              ))} */}
             </div>
           </div>
         </div>
