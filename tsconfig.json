@@ -1,28 +1,27 @@
 {
-  "compilerOptions": {
-    "baseUrl": ".", // this must be specified if "paths" is specified.
-    "paths": {
-      "@components/*": ["components/*"],
-      "@components/*/*": ["components/*/*"],
-      "@types": ["types/index.d.ts"],
-      "@jotai": ["stores/index.ts"],
-      "@utils": ["utils/index"]
-    },
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "incremental": true
-  },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+	"compilerOptions": {
+		"baseUrl": ".", // this must be specified if "paths" is specified.
+		"paths": {
+			"@components/*": ["components/*"],
+			"@types": ["types/index.d.ts"],
+			"@jotai": ["stores/index.ts"],
+			"@utils": ["utils/index"]
+		},
+		"target": "es5",
+		"lib": ["dom", "dom.iterable", "esnext"],
+		"allowJs": true,
+		"skipLibCheck": true,
+		"strict": true,
+		"forceConsistentCasingInFileNames": true,
+		"noEmit": true,
+		"esModuleInterop": true,
+		"module": "esnext",
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"jsx": "preserve",
+		"incremental": true
+	},
+	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+	"exclude": ["node_modules"]
 }

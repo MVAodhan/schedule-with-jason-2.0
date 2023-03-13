@@ -22,4 +22,6 @@ model Episode {
   title       String
   uri         String
   timezone    String?
+  chapters    String?
+  links       Json?
 }
