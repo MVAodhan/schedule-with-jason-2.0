@@ -26,6 +26,7 @@ export interface Episode {
 	chapters?: string;
 	links?: {};
 	time?: string;
+	tech?: string;
 }
 
 export interface EpisodeApi {

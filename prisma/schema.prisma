@@ -24,4 +24,5 @@ model Episode {
   timezone    String?
   chapters    String?
   links       Json?
+  tech        String?
 }
