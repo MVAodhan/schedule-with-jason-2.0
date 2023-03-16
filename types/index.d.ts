@@ -18,6 +18,7 @@ export interface Episode {
 		twitter: string;
 	};
 	id: string;
+	sanityId: string;
 	slug: string;
 	tags?: [];
 	title: string;
@@ -27,26 +28,6 @@ export interface Episode {
 	links?: {};
 	time?: string;
 	tech?: string;
-}
-
-export interface EpisodeApi {
-	date: string;
-	description: string;
-	guest: {
-		image: string;
-		name: string;
-		twitter: string;
-	};
-	host: {
-		image: string;
-		name: string;
-		twitter: string;
-	};
-	id: string;
-	slug: string;
-	tags: null | string[];
-	title: string;
-	uri: string;
 }
 
 export interface IDateTime {

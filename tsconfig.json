@@ -4,7 +4,7 @@
 		"paths": {
 			"@components/*": ["components/*"],
 			"@types": ["types/index.d.ts"],
-			"@jotai": ["stores/index.ts"],
+			"@store": ["stores/index.ts"],
 			"@utils": ["utils/index"]
 		},
 		"target": "es5",
