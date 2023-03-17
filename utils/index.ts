@@ -64,8 +64,6 @@ This episode was sponsored by:
 - Pluralsight (https://lwj.dev/pluralsight)
 
 Live transcription by White Coat Captioning (https://whitecoatcaptioning.com/)
-
-
 `;
 };
 

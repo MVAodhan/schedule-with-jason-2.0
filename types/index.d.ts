@@ -25,7 +25,7 @@ export interface Episode {
 	uri: string;
 	timezone?: string;
 	chapters?: string;
-	links?: {};
+	links?: ILink[];
 	time?: string;
 	tech?: string;
 }
@@ -42,6 +42,5 @@ export interface IDateTime {
 
 export interface ILink {
 	id: string;
-	sanityID: string | undefined;
 	value: string | undefined;
 }

@@ -15,7 +15,7 @@ const generation = ({ episode }: { episode: Episode }) => {
 		});
 		router.push("/");
 	};
-	console.log("from generation component", episode);
+
 	return (
 		<div className="w-full flex justify-center">
 			<div className="w-4/5 flex items-center  h-[400px]">
@@ -25,6 +25,7 @@ const generation = ({ episode }: { episode: Episode }) => {
 						className="textarea textarea-bordered w-full"
 						placeholder="Chapters"
 						ref={chaptersRef}
+						defaultValue={episode.chapters ? episode.chapters : ""}
 					></textarea>
 					<button className="btn btn-outline mt-5" onClick={updateEpisode}>
 						Add Chapters
@@ -32,7 +33,7 @@ const generation = ({ episode }: { episode: Episode }) => {
 				</div>
 
 				<div className="w-1/2 flex flex-col items-center">
-					<LinkContainer />
+					<LinkContainer episode={episode} />
 				</div>
 			</div>
 		</div>

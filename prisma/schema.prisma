@@ -25,4 +25,6 @@ model Episode {
   chapters    String?
   links       Json?
   tech        String?
+  repo        String?
+  demo        String?
 }
