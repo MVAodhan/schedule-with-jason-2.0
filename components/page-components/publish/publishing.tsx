@@ -18,17 +18,20 @@ const publishing = ({ episode }: { episode: Episode }) => {
 	const youtubeDescription = `
 ${episode.description}
 
-Demo: 
+${episode.demo ?? `Demo ${episode.demo}`}
 
-Repo:
+${episode.repo ? `Repo ${episode.repo}` : ""}
 
 Links & Resources:
 
 ${formatLinks()}
 
-${episode.chapters}
+${getCredits()}
 
-${getCredits()}`;
+Chatpers:
+
+${episode.chapters}
+`;
 
 	return (
 		<div className="flex flex-col items-center w-3/5">

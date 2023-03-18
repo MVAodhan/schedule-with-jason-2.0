@@ -48,14 +48,14 @@ export const getUTCDate = (date: string, timezone: string) => {
 
 export const captionDisclaimer = () => {
 	return `
-  *Captions provided by White Coat Captioning (https://whitecoatcaptioning.com/). 
+*Captions provided by White Coat Captioning (https://whitecoatcaptioning.com/). 
 Communication Access Realtime Translation (CART) is provided in order to facilitate
 communication accessibility and may not be a totally verbatim record of the proceedings.*`;
 };
 
 export const getCredits = () => {
 	return `
-  Watch future episodes live at https://twitch.tv/jlengstorf
+Watch future episodes live at https://twitch.tv/jlengstorf
 
 This episode was sponsored by:
 - Netlify (https://lwj.dev/netlify)

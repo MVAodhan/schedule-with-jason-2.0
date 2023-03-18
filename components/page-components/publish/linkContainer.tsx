@@ -1,12 +1,16 @@
 import { Episode, ILink } from "@types";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "./link";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 import { useRouter } from "next/router";
 
 const linkContainer = ({ episode }: { episode: Episode }) => {
+	const [show, setShow] = useState<Boolean>(false);
 	const [links, setLinks] = useState<ILink[] | []>([]);
+
+	const demoRef = useRef<HTMLInputElement>(null);
+	const repoRef = useRef<HTMLInputElement>(null);
 	const addLink = () => {
 		setLinks([...links, { id: uuidv4(), value: "" }]);
 	};
@@ -14,7 +18,6 @@ const linkContainer = ({ episode }: { episode: Episode }) => {
 
 	useEffect(() => {
 		if (episode.links) {
-			console.log(episode.links, Array.isArray(episode.links));
 			setLinks(episode.links);
 		}
 	}, []);
@@ -23,18 +26,52 @@ const linkContainer = ({ episode }: { episode: Episode }) => {
 		await axios.post("/api/update-links", {
 			ep: episode,
 			links: links,
+			demo: demoRef.current?.value,
+			repo: repoRef.current?.value,
 		});
 		router.push("/");
 	};
 
+	console.log(typeof episode.demo);
 	return (
-		<div className="w-full flex flex-col items-center ">
+		<div className="w-full flex flex-col items-center mt-[100px]">
 			<div className="form-control">
 				<label className="label cursor-pointer ">
 					<span className="label-text mr-10">Add Repo & Demo</span>
-					<input type="checkbox" className="toggle" />
+					<input
+						type="checkbox"
+						className="toggle"
+						onChange={() => {
+							setShow(!show);
+						}}
+						checked={show ? true : false}
+					/>
 				</label>
 			</div>
+			{show && (
+				<div>
+					<div className="w-full flex  items-center">
+						<label className="label">Demo</label>
+						<input
+							defaultValue={JSON.stringify(episode.demo)}
+							type="text"
+							ref={demoRef}
+							placeholder="Type here"
+							className="input input-bordered w-full max-w-xs"
+						/>
+					</div>
+					<div className="w-full flex  items-center">
+						<label className="label">Repo</label>
+						<input
+							defaultValue={episode.repo}
+							type="text"
+							ref={repoRef}
+							placeholder="Type here"
+							className="input input-bordered w-full max-w-xs"
+						/>
+					</div>
+				</div>
+			)}
 			<div>
 				<button className="btn btn-outline mt-5" onClick={addLink}>
 					Add Link

@@ -1,3 +1,5 @@
+import { StringLiteral } from "typescript";
+
 export interface Page {
 	id: number;
 	name: string;
@@ -28,6 +30,8 @@ export interface Episode {
 	links?: ILink[];
 	time?: string;
 	tech?: string;
+	repo?: string;
+	demo?: String;
 }
 
 export interface IDateTime {

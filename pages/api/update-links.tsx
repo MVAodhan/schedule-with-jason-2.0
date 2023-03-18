@@ -10,7 +10,7 @@ export default async function handler(
 	res: NextApiResponse
 ) {
 	// Get ep from request
-	const { ep, links } = req.body;
+	const { ep, links, demo, repo } = req.body;
 	// Gets all the episodes in the DB
 	let updated = await prisma.episode.update({
 		where: {
@@ -18,6 +18,8 @@ export default async function handler(
 		},
 		data: {
 			links: links,
+			demo: demo,
+			repo: repo,
 		},
 	});
 
