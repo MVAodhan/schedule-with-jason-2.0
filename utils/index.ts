@@ -60,7 +60,7 @@ Watch future episodes live at https://twitch.tv/jlengstorf
 This episode was sponsored by:
 - Netlify (https://lwj.dev/netlify)
 - Nx (https://lwj.dev/nx)
-- Backlight (https://lwj.dev/backlight)
+- New Relic (https://lwj.dev/new-relic)
 - Pluralsight (https://lwj.dev/pluralsight)
 
 Live transcription by White Coat Captioning (https://whitecoatcaptioning.com/)

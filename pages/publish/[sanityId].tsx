@@ -13,6 +13,7 @@ import Sanity from "components/page-components/publish/sanity";
 import Youtube from "components/page-components/publish/youtube";
 import Twitter from "components/page-components/publish/twitter";
 
+import EpisodeTitle from "@components/page-components/publish/episode-title";
 const tabs = [
 	{ header: "Sanity Details", id: "sanity" },
 	{ header: "Calendar Details", id: "calendar" },
@@ -59,6 +60,7 @@ const Publish = () => {
 			</Head>
 			<main className="w-screen  flex flex-col items-center">
 				<Nav />
+				<EpisodeTitle episode={episode[0]} />
 				<section className="w-full md:w-10/12 flex flex-col items-center ">
 					<div className="tabs tabs-boxed  justify-center bg-[#FFFFFF]">
 						<div>

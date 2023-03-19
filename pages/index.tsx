@@ -7,6 +7,7 @@ import Card from "@components/Card";
 import { useEffect } from "react";
 import axios from "axios";
 import { useUser, SignIn, SignedOut } from "@clerk/nextjs";
+import { globalAgent } from "http";
 
 export default function Home() {
 	const { isLoaded, isSignedIn, user } = useUser();
@@ -23,6 +24,8 @@ export default function Home() {
 	if (!isLoaded || !isSignedIn) {
 		return <Nav />;
 	}
+
+	console.log(user);
 	return (
 		<div className="w-screen h-screen">
 			<Head>
