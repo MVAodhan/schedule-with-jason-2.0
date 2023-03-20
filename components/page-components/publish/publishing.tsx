@@ -29,7 +29,6 @@ const publishing = ({ episode }: { episode: Episode }) => {
 
 	const youtubeDescription = `
 ${episode.description}
-
 ${episode.demo ?? `Demo ${episode.demo}`}
 
 ${episode.repo ?? `Repo ${episode.repo}`}
