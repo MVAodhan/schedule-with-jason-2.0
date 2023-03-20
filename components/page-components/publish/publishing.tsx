@@ -17,7 +17,9 @@ const publishing = ({ episode }: { episode: Episode }) => {
 		// console.log(linkSet);
 		let linksString: string[] | [] = [];
 		linkSet.forEach((link) => {
-			linksString.push(link);
+			if (link !== "- https://www.learnwithjason.dev/schedule") {
+				linksString.push(link);
+			}
 		});
 		// console.log(linksString);
 		let linkString = linksString.join("\n");
