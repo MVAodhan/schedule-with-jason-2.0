@@ -8,9 +8,19 @@ const publishing = ({ episode }: { episode: Episode }) => {
 	};
 
 	const formatLinks = () => {
+		let linkSet = new Set();
 		let links = episode.links?.map((link) => `- ${link.value}`);
+		for (let link of links) {
+			linkSet.add(link);
+		}
 
-		let linkString = links?.join("\n");
+		// console.log(linkSet);
+		let linksString: string[] | [] = [];
+		linkSet.forEach((link) => {
+			linksString.push(link);
+		});
+		// console.log(linksString);
+		let linkString = linksString.join("\n");
 
 		return linkString;
 	};
@@ -53,6 +63,7 @@ ${episode.chapters}
 				<label>Youtube Description</label>
 				<VscCopy
 					className="cursor-pointer pl-1 h-8 w-8"
+					// copyText(youtubeDescription);
 					onClick={() => {
 						copyText(youtubeDescription);
 					}}
