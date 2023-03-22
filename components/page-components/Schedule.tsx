@@ -98,7 +98,7 @@ const Schedule = () => {
 			/>
 			<button
 				className="btn mt-5"
-				disabled={userId === "user_2MwVLo4xFl6ch7xCP1Z4PIuFjpV"}
+				disabled={userId !== "user_2MwVLo4xFl6ch7xCP1Z4PIuFjpV"}
 			>
 				Add Episode
 			</button>
