@@ -4,8 +4,10 @@ import Link from "./link";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { useAuth } from "@clerk/nextjs";
 
 const linkContainer = ({ episode }: { episode: Episode }) => {
+	const { userId } = useAuth();
 	const [show, setShow] = useState<Boolean>(false);
 	const [links, setLinks] = useState<ILink[] | []>([]);
 
@@ -32,7 +34,15 @@ const linkContainer = ({ episode }: { episode: Episode }) => {
 		router.push("/");
 	};
 
-	console.log(typeof episode.demo);
+	const linkTest = async () => {
+		await axios.post("/api/links-test", {
+			ep: episode,
+			links: links,
+			demo: demoRef.current?.value,
+			repo: repoRef.current?.value,
+		});
+	};
+
 	return (
 		<div className="w-full flex flex-col items-center mt-[100px]">
 			<div className="form-control">
@@ -86,12 +96,16 @@ const linkContainer = ({ episode }: { episode: Episode }) => {
 					})}
 			</div>
 			{links.length > 0 && (
-				<button className="btn btn-outline mt-5" onClick={updateLinks}>
+				<button
+					className="btn btn-outline mt-5"
+					onClick={updateLinks}
+					disabled={userId !== "user_2MwVLo4xFl6ch7xCP1Z4PIuFjpV"}
+				>
 					Edit Links
 				</button>
 			)}
 		</div>
 	);
 };
-
+// <button disabled={userId !== "user_2MwVLo4xFl6ch7xCP1Z4PIuFjpV"}>
 export default linkContainer;

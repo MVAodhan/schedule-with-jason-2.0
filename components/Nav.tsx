@@ -6,6 +6,7 @@ import {
 	SignedOut,
 	SignInButton,
 	UserButton,
+	useAuth,
 } from "@clerk/nextjs";
 
 const pages: Page[] = [
@@ -16,6 +17,7 @@ const pages: Page[] = [
 import { SlMenu } from "react-icons/sl";
 
 const Nav = () => {
+	const { userId } = useAuth();
 	return (
 		<div className="navbar bg-base-100">
 			<div className="flex-1">

@@ -6,10 +6,10 @@ import { useAtom } from "jotai";
 import Card from "@components/Card";
 import { useEffect } from "react";
 import axios from "axios";
-import { useUser, SignIn, SignedOut } from "@clerk/nextjs";
-import { globalAgent } from "http";
+import { useUser, SignIn, SignedOut, useAuth } from "@clerk/nextjs";
 
 export default function Home() {
+	const { userId } = useAuth();
 	const { isLoaded, isSignedIn, user } = useUser();
 	const [episodes, setEpisodes] = useAtom(episodesAtom);
 	const getEpisodes = async () => {
@@ -25,7 +25,6 @@ export default function Home() {
 		return <Nav />;
 	}
 
-	console.log(user);
 	return (
 		<div className="w-screen h-screen">
 			<Head>

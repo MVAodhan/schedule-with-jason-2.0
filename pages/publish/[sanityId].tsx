@@ -28,11 +28,7 @@ const Publish = () => {
 	const router = useRouter();
 	let { sanityId } = router.query;
 
-	console.log(sanityId);
-
 	const episode = episodes.filter((episode) => episode.sanityId === sanityId);
-
-	console.log(episode);
 
 	const renderTab = () => {
 		switch (activeTab) {

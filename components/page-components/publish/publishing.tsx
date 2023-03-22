@@ -8,23 +8,26 @@ const publishing = ({ episode }: { episode: Episode }) => {
 	};
 
 	const formatLinks = () => {
-		let linkSet = new Set();
-		let links = episode.links?.map((link) => `- ${link.value}`);
-		for (let link of links) {
-			linkSet.add(link);
-		}
-
-		// console.log(linkSet);
-		let linksString: string[] | [] = [];
-		linkSet.forEach((link) => {
-			if (link !== "- https://www.learnwithjason.dev/schedule") {
-				linksString.push(link);
+		if (episode?.links && episode.links.length > 1) {
+			let linkSet = new Set();
+			let links = episode.links?.map((link) => `- ${link.value}`) as String[];
+			for (let link of links) {
+				linkSet.add(link);
 			}
-		});
-		// console.log(linksString);
-		let linkString = linksString.join("\n");
 
-		return linkString;
+			// console.log(linkSet);
+			let linksString: any = [];
+			linkSet.forEach((link) => {
+				if (link !== "- https://www.learnwithjason.dev/schedule") {
+					linksString = [...linksString, link];
+				}
+			});
+			// console.log(linksString);
+			let uniqueStrings = linksString.join("\n");
+
+			return uniqueStrings;
+		}
+		return "No links found";
 	};
 
 	const youtubeDescription = `

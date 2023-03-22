@@ -4,8 +4,10 @@ import { Episode } from "@types";
 import { useRef } from "react";
 
 import { useRouter } from "next/router";
+import { useAuth } from "@clerk/nextjs";
 
 const generation = ({ episode }: { episode: Episode }) => {
+	const { userId } = useAuth();
 	const router = useRouter();
 	const chaptersRef = useRef<HTMLTextAreaElement>(null);
 	const updateEpisode = async () => {
@@ -27,7 +29,11 @@ const generation = ({ episode }: { episode: Episode }) => {
 						ref={chaptersRef}
 						defaultValue={episode.chapters ? episode.chapters : ""}
 					></textarea>
-					<button className="btn btn-outline mt-5" onClick={updateEpisode}>
+					<button
+						className="btn btn-outline mt-5"
+						onClick={updateEpisode}
+						disabled={userId !== "user_2MwVLo4xFl6ch7xCP1Z4PIuFjpV"}
+					>
 						Add Chapters
 					</button>
 				</div>
