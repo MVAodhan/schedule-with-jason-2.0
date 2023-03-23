@@ -1,5 +1,3 @@
-import { StringLiteral } from "typescript";
-
 export interface Page {
 	id: number;
 	name: string;

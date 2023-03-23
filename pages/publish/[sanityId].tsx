@@ -34,7 +34,6 @@ const Publish = () => {
 		switch (activeTab) {
 			case "calendar":
 				return <Calendar episode={episode[0]} />;
-				
 			case "youtube":
 				return <Youtube episode={episode[0]} />;
 				

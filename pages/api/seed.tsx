@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 import axios from "axios";
-import { EpisodeApi } from "@types";
+import { Episode } from "@types";
 
 //Gets episodes from the sanity api and puts them in the DB if the sanityId doesn't exist
 export default async function handler(
@@ -17,7 +17,7 @@ export default async function handler(
 
 	// Creates an array of all the sanityIds in the DB
 	let sanittyIDsInDB = episodesInDB.map((episode) => episode.sanityId);
-	const createEpisode = async (episode: EpisodeApi) => {
+	const createEpisode = async (episode: Episode) => {
 		await prisma.episode.create({
 			data: {
 				sanityId: episode.id,
