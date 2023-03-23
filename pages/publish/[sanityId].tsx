@@ -34,13 +34,13 @@ const Publish = () => {
 		switch (activeTab) {
 			case "calendar":
 				return <Calendar episode={episode[0]} />;
-				break;
+				
 			case "youtube":
 				return <Youtube episode={episode[0]} />;
-				break;
+				
 			case "twitter":
 				return <Twitter episode={episode[0]} />;
-				break;
+				
 			default:
 				return <Sanity episode={episode[0]} />;
 		}

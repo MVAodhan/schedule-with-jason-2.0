@@ -2,8 +2,6 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
-import { Episode } from "@types";
-
 //Gets episodes from the sanity api and puts them in the DB if the sanityId doesn't exist
 export default async function handler(
 	req: NextApiRequest,

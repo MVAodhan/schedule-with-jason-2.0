@@ -1,7 +1,5 @@
 import { useRef } from "react";
 
-import { episodesAtom } from "stores";
-import { useAtom } from "jotai";
 import { useAuth } from "@clerk/nextjs";
 
 const Schedule = () => {
@@ -14,8 +12,6 @@ const Schedule = () => {
 	const timeRef = useRef<HTMLInputElement | null>(null);
 	const techRef = useRef<HTMLInputElement | null>(null);
 	const selectRef = useRef<HTMLSelectElement | null>(null);
-
-	const [episodes, setEpisodes] = useAtom(episodesAtom);
 
 	const { userId } = useAuth();
 	return (

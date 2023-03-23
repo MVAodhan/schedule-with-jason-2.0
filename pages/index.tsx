@@ -6,20 +6,19 @@ import { useAtom } from "jotai";
 import Card from "@components/Card";
 import { useEffect } from "react";
 import axios from "axios";
-import { useUser, SignIn, SignedOut, useAuth } from "@clerk/nextjs";
+import { useUser } from "@clerk/nextjs";
 
 export default function Home() {
-	const { userId } = useAuth();
-	const { isLoaded, isSignedIn, user } = useUser();
+	const { isLoaded, isSignedIn } = useUser();
 	const [episodes, setEpisodes] = useAtom(episodesAtom);
-	const getEpisodes = async () => {
-		const res = await axios.get("/api/get");
-		setEpisodes(res.data);
-	};
 
 	useEffect(() => {
+		const getEpisodes = async () => {
+			const res = await axios.get("/api/get");
+			setEpisodes(res.data);
+		};
 		getEpisodes();
-	}, []);
+	}, [setEpisodes]);
 
 	if (!isLoaded || !isSignedIn) {
 		return <Nav />;

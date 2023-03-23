@@ -1,12 +1,6 @@
 import { Page } from "@types";
 import Link from "next/link";
-import {
-	useUser,
-	SignIn,
-	SignedOut,
-	SignInButton,
-	UserButton,
-} from "@clerk/nextjs";
+import { SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 
 const pages: Page[] = [
 	{ id: 1, name: "Home", path: "/" },

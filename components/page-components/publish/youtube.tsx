@@ -9,7 +9,7 @@ const youtube = ({ episode }: { episode: Episode }) => {
 		switch (activeTab) {
 			case "generation":
 				return <Generation episode={episode} />;
-				break;
+				
 			default:
 				return <Publishing episode={episode} />;
 		}

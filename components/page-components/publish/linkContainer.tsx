@@ -34,15 +34,6 @@ const linkContainer = ({ episode }: { episode: Episode }) => {
 		router.push("/");
 	};
 
-	const linkTest = async () => {
-		await axios.post("/api/links-test", {
-			ep: episode,
-			links: links,
-			demo: demoRef.current?.value,
-			repo: repoRef.current?.value,
-		});
-	};
-
 	return (
 		<div className="w-full flex flex-col items-center mt-[100px]">
 			<div className="form-control">
@@ -91,7 +82,13 @@ const linkContainer = ({ episode }: { episode: Episode }) => {
 				{links.length > 0 &&
 					links.map((link) => {
 						return (
-							<Link key={link.id} id={link.id} link={link} links={links} />
+							<Link
+								key={link.id}
+								id={link.id}
+								link={link}
+								links={links}
+								setLinks={setLinks}
+							/>
 						);
 					})}
 			</div>
@@ -107,5 +104,4 @@ const linkContainer = ({ episode }: { episode: Episode }) => {
 		</div>
 	);
 };
-// <button disabled={userId !== "user_2MwVLo4xFl6ch7xCP1Z4PIuFjpV"}>
 export default linkContainer;

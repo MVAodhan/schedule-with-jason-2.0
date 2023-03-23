@@ -1,6 +1,4 @@
-import { useRef, useState } from "react";
-import { VscCopy } from "react-icons/vsc";
-import { getDates } from "@utils";
+import { useState } from "react";
 import Initial from "./sanity/Initial";
 import Final from "./sanity/Final";
 import { Episode } from "@types";
@@ -16,8 +14,7 @@ const sanity = ({ episode }: { episode: Episode }) => {
 	const renderTab = () => {
 		switch (activeTab) {
 			case "fin":
-				return <Final episode={episode} />;
-				break;
+				return <Final />;
 			default:
 				return <Initial episode={episode} />;
 		}
