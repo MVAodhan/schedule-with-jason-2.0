@@ -96,7 +96,7 @@ const linkContainer = ({ episode }: { episode: Episode }) => {
 				<button
 					className="btn btn-outline mt-5"
 					onClick={updateLinks}
-					disabled={userId !== "user_2MwVLo4xFl6ch7xCP1Z4PIuFjpV"}
+					disabled={userId !== "user_2NRW0JcZzyuwZLILxooWGFUcBO5"}
 				>
 					Edit Links
 				</button>
