@@ -1,9 +1,10 @@
 import { DateTime } from "luxon";
 
-export const getDates = (date: string, timezone: string) => {
+export const getDates = (date: string, timezone: string = "utc") => {
 	let usDate;
 	let nzDate;
 	let dt = DateTime.fromISO(date, { zone: timezone });
+
 	let zonedDt = DateTime.fromObject(
 		{
 			day: dt.day,

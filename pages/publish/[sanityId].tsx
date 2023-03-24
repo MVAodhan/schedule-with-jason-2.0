@@ -2,16 +2,16 @@ import Nav from "@components/Nav";
 import Head from "next/head";
 
 import { useState } from "react";
-import { useRouter } from "next/router";
 import { Episode } from "@types";
 
-import { episodesAtom } from "@store";
-import { useAtom } from "jotai";
-
 import Calendar from "components/page-components/publish/calendar";
-import Sanity from "components/page-components/publish/sanity";
+import Sanity from "@components/page-components/publish/sanity-component";
 import Youtube from "components/page-components/publish/youtube";
 import Twitter from "components/page-components/publish/twitter";
+import { NextApiRequest } from "next";
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
 
 const tabs = [
 	{ header: "Sanity Details", id: "sanity" },
@@ -20,27 +20,19 @@ const tabs = [
 	{ header: "Twitter Details", id: "twitter" },
 ];
 
-const Publish = () => {
+const Publish = ({ episode }: { episode: Episode }) => {
 	const [activeTab, setActiveTab] = useState<string>("sanity");
-	const [episodes] = useAtom<Episode[]>(episodesAtom);
-
-	const router = useRouter();
-	let { sanityId } = router.query;
-
-	const episode = episodes.filter((episode) => episode.sanityId === sanityId);
 
 	const renderTab = () => {
 		switch (activeTab) {
 			case "calendar":
-				return <Calendar episode={episode[0]} />;
+				return <Calendar episode={episode} />;
 			case "youtube":
-				return <Youtube episode={episode[0]} />;
-
+				return <Youtube episode={episode} />;
 			case "twitter":
-				return <Twitter episode={episode[0]} />;
-
+				return <Twitter episode={episode} />;
 			default:
-				return <Sanity episode={episode[0]} />;
+				return <Sanity episode={episode} />;
 		}
 	};
 
@@ -74,5 +66,24 @@ const Publish = () => {
 		</>
 	);
 };
+
+export async function getServerSideProps(req: NextApiRequest) {
+	const { sanityId } = req.query;
+
+	let episodes = await prisma.episode.findMany();
+
+	console.log("data", episodes);
+
+	const episode = episodes.filter((item) => {
+		const isMatch = item.sanityId === sanityId;
+		return isMatch;
+	});
+
+	return {
+		props: {
+			episode: episode[0],
+		}, // will be passed to the page component as props
+	};
+}
 
 export default Publish;

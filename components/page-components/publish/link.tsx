@@ -23,7 +23,7 @@ const link = ({
 					id: uuidv4(),
 					value: linkRef.current?.value,
 				};
-				setLinks(newLink);
+				setLinks([...links, newLink]);
 			}
 		}
 	};

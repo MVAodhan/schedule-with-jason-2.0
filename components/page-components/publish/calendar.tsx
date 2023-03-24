@@ -11,7 +11,12 @@ const calendar = ({ episode }: { episode: any }) => {
 	const titleRef = useRef<HTMLInputElement | null>(null);
 	const descRef = useRef<HTMLTextAreaElement | null>(null);
 
-	const { usDate, nzDate } = getDates(episode.date, episode.timezone);
+	console.log("episode date", episode.date);
+
+	const { usDate, nzDate } = getDates(
+		episode.date,
+		episode.timezone ? episode.timezone : "America/Los_Angeles"
+	);
 	const copyValue = (ref: any) => {
 		if (ref.current?.value !== null) {
 			const string = ref.current?.value.toString() as string;
@@ -37,8 +42,10 @@ const calendar = ({ episode }: { episode: any }) => {
 			</div>
 			<div className="flex">
 				<div className="flex">
-					<div className="mt-10">US Date: {usDate}</div>
-					<div className="mt-10 pl-10">NZ Date: {nzDate}</div>
+					<div className="mt-10">US Date: {usDate ? usDate : "no date"}</div>
+					<div className="mt-10 pl-10">
+						NZ Date: {nzDate ? nzDate : "no date"}
+					</div>
 				</div>
 			</div>
 			<div className="flex w-full justify-around">

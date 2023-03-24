@@ -1,13 +1,11 @@
 import { Episode } from "@types";
 import { VscCopy } from "react-icons/vsc";
 import { useRef } from "react";
-import { getDates } from "@utils";
-const Initial = ({ episode }: { episode: Episode }) => {
+
+const Initial = ({ episode, usDate, nzDate }: { episode: Episode, usDate: string, nzDate: string }) => {
 	const nameRef = useRef<HTMLInputElement | null>(null);
 	const titleRef = useRef<HTMLInputElement | null>(null);
 	const descRef = useRef<HTMLTextAreaElement | null>(null);
-
-	const { nzDate, usDate } = getDates(episode.date, "America/Los_Angeles");
 
 	const copyValue = (ref: any) => {
 		if (ref.current?.value !== null) {
@@ -46,8 +44,10 @@ const Initial = ({ episode }: { episode: Episode }) => {
 			</div>
 			<div className="flex">
 				<div className="flex">
-					<div className="mt-10">US Date: {usDate}</div>
-					<div className="mt-10 pl-10">NZ Date: {nzDate}</div>
+					<div className="mt-10">US Date: {usDate ? usDate : "no date"}</div>
+					<div className="mt-10 pl-10">
+						NZ Date: {nzDate ? nzDate : "no date"}
+					</div>
 				</div>
 			</div>
 			<div className="flex items-center justify-center w-full mt-10">

@@ -15,6 +15,7 @@ export default function Home() {
 	useEffect(() => {
 		const getEpisodes = async () => {
 			const res = await axios.get("/api/get");
+			console.log("res.data", res.data);
 			setEpisodes(res.data);
 		};
 		getEpisodes();
