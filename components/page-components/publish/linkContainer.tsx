@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useAuth } from "@clerk/nextjs";
+import { disableButton } from "@utils";
 
 const linkContainer = ({ episode }: { episode: Episode }) => {
 	const { userId } = useAuth();
@@ -34,6 +35,7 @@ const linkContainer = ({ episode }: { episode: Episode }) => {
 		router.push("/");
 	};
 
+	const isDisabled = disableButton(userId as string);
 	return (
 		<div className="w-full flex flex-col items-center mt-[100px]">
 			<div className="form-control">
@@ -96,7 +98,7 @@ const linkContainer = ({ episode }: { episode: Episode }) => {
 				<button
 					className="btn btn-outline mt-5"
 					onClick={updateLinks}
-					disabled={userId !== "user_2NRW0JcZzyuwZLILxooWGFUcBO5"}
+					disabled={isDisabled}
 				>
 					Edit Links
 				</button>

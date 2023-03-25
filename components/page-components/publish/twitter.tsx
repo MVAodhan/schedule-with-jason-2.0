@@ -1,6 +1,6 @@
 import { useAuth } from "@clerk/nextjs";
 import { Episode } from "@types";
-import { getHighlightText } from "@utils";
+import { disableButton, getHighlightText } from "@utils";
 import axios from "axios";
 import { useRouter } from "next/router";
 
@@ -24,6 +24,8 @@ const twitter = ({ episode }: { episode: Episode }) => {
 		router.push("/");
 	};
 
+	const isDisabled = disableButton(userId as string);
+
 	return (
 		<div>
 			<div className="w-full flex flex-col items-center">
@@ -38,7 +40,7 @@ const twitter = ({ episode }: { episode: Episode }) => {
 				<button
 					className="btn btn-outline mt-5"
 					onClick={updateTech}
-					disabled={userId !== "user_2MwVLo4xFl6ch7xCP1Z4PIuFjpV"}
+					disabled={isDisabled}
 				>
 					Update technology
 				</button>

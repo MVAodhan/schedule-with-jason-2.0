@@ -47,6 +47,16 @@ export const getUTCDate = (date: string, timezone: string) => {
 	return utcDate;
 };
 
+export const disableButton = (userId: any) => {
+	if (
+		userId === "user_2NRW0JcZzyuwZLILxooWGFUcBO5" ||
+		userId === "user_2MwVLo4xFl6ch7xCP1Z4PIuFjpV"
+	) {
+		return false;
+	} else {
+		return true;
+	}
+};
 export const captionDisclaimer = () => {
 	return `
 *Captions provided by White Coat Captioning (https://whitecoatcaptioning.com/). 

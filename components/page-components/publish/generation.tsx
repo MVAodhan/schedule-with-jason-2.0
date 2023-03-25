@@ -5,6 +5,7 @@ import { useRef } from "react";
 
 import { useRouter } from "next/router";
 import { useAuth } from "@clerk/nextjs";
+import { disableButton } from "@utils";
 
 const generation = ({ episode }: { episode: Episode }) => {
 	const { userId } = useAuth();
@@ -17,6 +18,8 @@ const generation = ({ episode }: { episode: Episode }) => {
 		});
 		router.push("/");
 	};
+
+	const isDisabled = disableButton(userId as string);
 
 	return (
 		<div className="w-full flex justify-center">
@@ -32,7 +35,7 @@ const generation = ({ episode }: { episode: Episode }) => {
 					<button
 						className="btn btn-outline mt-5"
 						onClick={updateEpisode}
-						disabled={userId !== "user_2MwVLo4xFl6ch7xCP1Z4PIuFjpV"}
+						disabled={isDisabled}
 					>
 						Add Chapters
 					</button>
