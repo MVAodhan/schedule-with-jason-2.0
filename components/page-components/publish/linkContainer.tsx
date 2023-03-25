@@ -84,13 +84,7 @@ const linkContainer = ({ episode }: { episode: Episode }) => {
 				{links.length > 0 &&
 					links.map((link) => {
 						return (
-							<Link
-								key={link.id}
-								id={link.id}
-								link={link}
-								links={links}
-								setLinks={setLinks}
-							/>
+							<Link key={link.id} id={link.id} link={link} links={links} />
 						);
 					})}
 			</div>

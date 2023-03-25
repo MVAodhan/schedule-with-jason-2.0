@@ -1,17 +1,14 @@
 import { ILink } from "@types";
 import { useRef } from "react";
-import { v4 as uuidv4 } from "uuid";
 
 const link = ({
 	id,
 	link,
 	links,
-	setLinks,
 }: {
 	id: string;
 	link: ILink;
 	links: ILink[] | [];
-	setLinks: Function;
 }) => {
 	let linkRef = useRef<HTMLInputElement>(null);
 	const handleChange = (links: ILink[]) => {
@@ -19,11 +16,7 @@ const link = ({
 			if (links.length > 0 && links[link].id === id) {
 				links[link].value = linkRef.current?.value;
 			} else {
-				const newLink = {
-					id: uuidv4(),
-					value: linkRef.current?.value,
-				};
-				setLinks([...links, newLink]);
+				return;
 			}
 		}
 	};

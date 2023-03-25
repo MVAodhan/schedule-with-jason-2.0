@@ -1,6 +1,7 @@
 import { useRef } from "react";
 
 import { useAuth } from "@clerk/nextjs";
+import { disableButton } from "@utils";
 
 const Schedule = () => {
 	const guestRef = useRef<HTMLInputElement | null>(null);
@@ -14,6 +15,8 @@ const Schedule = () => {
 	const selectRef = useRef<HTMLSelectElement | null>(null);
 
 	const { userId } = useAuth();
+
+	const isDisabled = disableButton(userId as string);
 	return (
 		<div className="w-full h-full flex flex-col items-center ">
 			<div className="w-full flex">
@@ -92,10 +95,7 @@ const Schedule = () => {
 				type="text"
 				className="input input-bordered w-full max-w-xs"
 			/>
-			<button
-				className="btn mt-5"
-				disabled={userId !== "user_2MwVLo4xFl6ch7xCP1Z4PIuFjpV"}
-			>
+			<button className="btn mt-5" disabled={isDisabled}>
 				Add Episode
 			</button>
 		</div>
