@@ -32,6 +32,20 @@ export interface Episode {
 	demo?: String;
 }
 
+export interface EpisodeStaging {
+	id: string;
+	title: string;
+	date: string;
+	time?: string;
+	timezone?: string;
+	twitterDescription: string;
+	textDescription: string;
+	guest: {
+		name: string;
+		twitter: string;
+	};
+}
+
 export interface IDateTime {
 	c: {
 		day: number;

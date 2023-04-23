@@ -25,6 +25,13 @@ const linkContainer = ({ episode }: { episode: Episode }) => {
 		}
 	}, []);
 
+	const handleLinkChange = (id: string, newValue: string) => {
+		setLinks((prevLinks) =>
+			prevLinks.map((link) =>
+				link.id === id ? { ...link, value: newValue } : link
+			)
+		);
+	};
 	const updateLinks = async () => {
 		await axios.post("/api/update-links", {
 			ep: episode,
@@ -84,18 +91,21 @@ const linkContainer = ({ episode }: { episode: Episode }) => {
 				{links.length > 0 &&
 					links.map((link) => {
 						return (
-							<Link key={link.id} id={link.id} link={link} links={links} />
+							<Link key={link.id} link={link} onLinkChange={handleLinkChange} />
 						);
 					})}
 			</div>
 			{links.length > 0 && (
-				<button
-					className="btn btn-outline mt-5"
-					onClick={updateLinks}
-					disabled={isDisabled}
-				>
-					Edit Links
-				</button>
+				<div>
+					<button
+						className="btn btn-outline mt-5"
+						onClick={updateLinks}
+						disabled={isDisabled}
+					>
+						Edit Links
+					</button>
+					<button onClick={() => console.log(links)}>Log links</button>
+				</div>
 			)}
 		</div>
 	);

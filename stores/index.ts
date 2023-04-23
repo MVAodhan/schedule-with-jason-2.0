@@ -1,5 +1,7 @@
-import { atom } from 'jotai';
-import { Episode } from '@types';
+import { atom } from "jotai";
+import { Episode, EpisodeStaging } from "@types";
 const episodesAtom = atom<Episode[] | []>([]);
 
-export { episodesAtom };
+const stagingEpisodesAtom = atom<EpisodeStaging[] | null>(null);
+
+export { episodesAtom, stagingEpisodesAtom };
