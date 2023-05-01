@@ -34,7 +34,7 @@ export default function Home() {
 								episodes.map((ep) => <CardStaging key={ep.id} episode={ep} />)} */}
 
 							{episodes &&
-								episodes.map((ep) => <CardStaging key={ep.id} episode={ep} />)}
+								episodes.map((ep) => <CardStaging key={ep.id} />)}
 						</div>
 					</div>
 				</div>
