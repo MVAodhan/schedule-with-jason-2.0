@@ -1,9 +1,8 @@
-import { Episode } from "@types";
 // import { getDates } from "@utils";
-import Link from "next/link";
+
 // import { useEffect, useState } from "react";
 
-const CardStaging = ({ episode }: { episode: Episode }) => {
+const CardStaging = () => {
 	// const [usDate, setUsDate] = useState<string>("");
 	// const [nzDate, setNzDate] = useState<string>("");
 
@@ -17,18 +16,16 @@ const CardStaging = ({ episode }: { episode: Episode }) => {
 	// }, []);
 
 	return (
-		<Link>
-			<div className="card w-full bg-base-100 shadow-xl mx-auto ring ring-[#FF9EB1]">
-				<div className="card-body ">
-					<h2 className="card-title"></h2>
-					<p></p>
-					<div className="flex flex-row ">
-						<div className="w-1/2">US Date: </div>
-						<div>NZ Date: </div>
-					</div>
+		<div className="card w-full bg-base-100 shadow-xl mx-auto ring ring-[#FF9EB1]">
+			<div className="card-body ">
+				<h2 className="card-title"></h2>
+				<p></p>
+				<div className="flex flex-row ">
+					<div className="w-1/2">US Date: </div>
+					<div>NZ Date: </div>
 				</div>
 			</div>
-		</Link>
+		</div>
 	);
 };
 
