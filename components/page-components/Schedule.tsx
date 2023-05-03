@@ -3,11 +3,12 @@ import { useRef } from "react";
 import { useAuth } from "@clerk/nextjs";
 import { disableButton } from "@utils";
 
+import { DateTime } from "luxon";
+
 const Schedule = () => {
 	const guestRef = useRef<HTMLInputElement | null>(null);
 	const titleRef = useRef<HTMLInputElement | null>(null);
 	const guestHandleRef = useRef<HTMLInputElement | null>(null);
-	const twitterDescRef = useRef<HTMLTextAreaElement | null>(null);
 	const textDescRef = useRef<HTMLTextAreaElement | null>(null);
 	const dateRef = useRef<HTMLInputElement | null>(null);
 	const timeRef = useRef<HTMLInputElement | null>(null);
@@ -15,6 +16,24 @@ const Schedule = () => {
 	const selectRef = useRef<HTMLSelectElement | null>(null);
 
 	const { userId } = useAuth();
+
+	const addScheduled = async () => {
+		console.log(guestRef.current?.value);
+		console.log(titleRef.current?.value);
+		console.log(guestHandleRef.current?.value);
+		console.log(textDescRef.current?.value);
+		console.log(dateRef.current?.value);
+		console.log(timeRef.current?.value);
+		console.log(techRef.current?.value);
+		console.log(selectRef.current?.value);
+		let date = DateTime.fromISO(
+			`${dateRef.current?.value}T${timeRef.current?.value}`,
+			{ zone: `${selectRef.current?.value}` }
+		);
+		const utcIsoDate = date.toUTC().toISO();
+		console.log(date);
+		console.log(utcIsoDate);
+	};
 
 	const isDisabled = disableButton(userId as string);
 	return (
@@ -79,11 +98,6 @@ const Schedule = () => {
 				<option value="America/Los_Angeles">PST</option>
 				<option value="Pacific/Auckland">NZST</option>
 			</select>
-			<label className="label">Twitter Description</label>
-			<textarea
-				ref={twitterDescRef}
-				className="textarea textarea-bordered w-3/5"
-			></textarea>
 			<label className="label"> Text Description</label>
 			<textarea
 				ref={textDescRef}
@@ -95,7 +109,7 @@ const Schedule = () => {
 				type="text"
 				className="input input-bordered w-full max-w-xs"
 			/>
-			<button className="btn mt-5" disabled={isDisabled}>
+			<button className="btn mt-5" disabled={isDisabled} onClick={addScheduled}>
 				Add Episode
 			</button>
 		</div>

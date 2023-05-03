@@ -28,3 +28,11 @@ model Episode {
   repo        String?
   demo        String?
 }
+
+model Schedule{
+  id          Int     @id @default(autoincrement())
+  date        String
+  description String
+  guest_name String
+  guest_twitter String
+}

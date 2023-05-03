@@ -2,13 +2,13 @@ import Head from "next/head";
 
 import Nav from "@components/Nav";
 import { useUser } from "@clerk/nextjs";
-import CardStaging from "@components/CardStaging";
+// import CardStaging from "@components/CardStaging";
 
-import { stagingEpisodesAtom } from "@store";
-import { useAtom } from "jotai";
+// import { stagingEpisodesAtom } from "@store";
+// import { useAtom } from "jotai";
 export default function Home() {
 	const { isLoaded, isSignedIn } = useUser();
-	const [episodes] = useAtom(stagingEpisodesAtom);
+	// const [episodes] = useAtom(stagingEpisodesAtom);
 
 	if (!isLoaded || !isSignedIn) {
 		return <Nav />;
@@ -33,8 +33,8 @@ export default function Home() {
 							{/* {episodes !== null &&
 								episodes.map((ep) => <CardStaging key={ep.id} episode={ep} />)} */}
 
-							{episodes &&
-								episodes.map((ep) => <CardStaging key={ep.id} />)}
+							{/* {episodes &&
+								episodes.map((ep) => <CardStaging key={ep.id} />)} */}
 						</div>
 					</div>
 				</div>
