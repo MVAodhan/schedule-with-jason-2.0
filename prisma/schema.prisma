@@ -33,6 +33,7 @@ model Schedule{
   id          Int     @id @default(autoincrement())
   date        String
   description String
+  twitter_description String
   guest_name String
   guest_twitter String
 }

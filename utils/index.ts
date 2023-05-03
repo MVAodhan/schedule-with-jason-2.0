@@ -86,3 +86,37 @@ export const getHighlightText = (
 	return `Did you miss @${twitter} teaching us about ${tech} live on LWJ?
 No worries! Watch highlights from the episode here, then check out the full episode replay ${slug}`;
 };
+
+type TTweetType = "twoWeeks" | "ninetyMinutes" | "Live";
+
+export const getScheduleTweet = (
+	tweetType: TTweetType,
+	twitter_description?: string,
+	slug?: string
+) => {
+	let title;
+	let footer;
+
+	if (tweetType === "twoWeeks") {
+		title = "📣 Just Scheduled! 📣";
+		footer = "⬇️ Details Here ⬇️";
+	} else if (tweetType === "ninetyMinutes") {
+		title = "⚠️ In 90 Mins! ⚠️";
+		footer = "⬇️ Details Here ⬇️";
+	} else {
+		title = "🔴 Live! 🔴";
+		footer = "⬇️ Watch Live Here 👀";
+		slug = "https://www.twitch.tv/jlengstorf";
+	}
+
+	const tweet = `${title}
+
+${twitter_description}
+
+
+${footer}
+${slug}
+`;
+
+	return tweet;
+};

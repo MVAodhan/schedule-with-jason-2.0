@@ -10,6 +10,7 @@ const Schedule = () => {
 	const titleRef = useRef<HTMLInputElement | null>(null);
 	const guestHandleRef = useRef<HTMLInputElement | null>(null);
 	const textDescRef = useRef<HTMLTextAreaElement | null>(null);
+	const twitterDescRef = useRef<HTMLTextAreaElement | null>(null);
 	const dateRef = useRef<HTMLInputElement | null>(null);
 	const timeRef = useRef<HTMLInputElement | null>(null);
 	const techRef = useRef<HTMLInputElement | null>(null);
@@ -21,6 +22,7 @@ const Schedule = () => {
 		console.log(guestRef.current?.value);
 		console.log(titleRef.current?.value);
 		console.log(guestHandleRef.current?.value);
+		console.log(twitterDescRef.current?.value);
 		console.log(textDescRef.current?.value);
 		console.log(dateRef.current?.value);
 		console.log(timeRef.current?.value);
@@ -98,6 +100,11 @@ const Schedule = () => {
 				<option value="America/Los_Angeles">PST</option>
 				<option value="Pacific/Auckland">NZST</option>
 			</select>
+			<label className="label"> Twitter Description</label>
+			<textarea
+				ref={twitterDescRef}
+				className="textarea textarea-bordered w-3/5"
+			></textarea>
 			<label className="label"> Text Description</label>
 			<textarea
 				ref={textDescRef}

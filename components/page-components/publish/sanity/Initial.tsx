@@ -2,7 +2,15 @@ import { Episode } from "@types";
 import { VscCopy } from "react-icons/vsc";
 import { useRef } from "react";
 
-const Initial = ({ episode, usDate, nzDate }: { episode: Episode, usDate: string, nzDate: string }) => {
+const Initial = ({
+	episode,
+	usDate,
+	nzDate,
+}: {
+	episode: Episode;
+	usDate: string;
+	nzDate: string;
+}) => {
 	const nameRef = useRef<HTMLInputElement | null>(null);
 	const titleRef = useRef<HTMLInputElement | null>(null);
 	const descRef = useRef<HTMLTextAreaElement | null>(null);

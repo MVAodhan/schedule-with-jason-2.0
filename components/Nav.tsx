@@ -5,6 +5,7 @@ import { SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 const pages: Page[] = [
 	{ id: 1, name: "Home", path: "/" },
 	{ id: 2, name: "Add Episode", path: "/add" },
+	{ id: 3, name: "Staging", path: "/staging" },
 ];
 
 import { SlMenu } from "react-icons/sl";
