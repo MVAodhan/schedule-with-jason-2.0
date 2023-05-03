@@ -9,14 +9,24 @@ export default async function handler(
 	req: NextApiRequest,
 	res: NextApiResponse
 ) {
-	const episodes = await axios.get(
+	// Get episodes from lwj api
+	let episodes = await axios.get(
 		"https://www.learnwithjason.dev/api/v2/schedule"
 	);
+	let episodesData = episodes.data;
 	// Gets all the episodes in the DB
 	let episodesInDB = await prisma.episode.findMany();
-
 	// Creates an array of all the sanityIds in the DB
 	let sanittyIDsInDB = episodesInDB.map((episode) => episode.sanityId);
+
+	let episodesToAdd = episodesData.filter((episode: Episode) => {
+		if (!sanittyIDsInDB.includes(episode.id)) {
+			return episode;
+		} else {
+			return null;
+		}
+	});
+
 	const createEpisode = async (episode: Episode) => {
 		await prisma.episode.create({
 			data: {
@@ -41,12 +51,13 @@ export default async function handler(
 		});
 	};
 
-	// For each of the episodes in the Sanity api, it checks if the sanityId is in the DB array of Idsand if not, it adds it to the the DB
-	episodes.data.forEach((episode: any) => {
+	// // For each of the episodes from the Sanity api, it checks if the sanityId is in the DB, if not, it adds it to the the DB
+	episodesToAdd.forEach((episode: any) => {
 		if (!sanittyIDsInDB.includes(episode.id)) {
 			createEpisode(episode);
 		}
 	});
 
+	prisma.$disconnect();
 	res.status(200).json("seed successful");
 }
