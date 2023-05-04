@@ -1,17 +1,21 @@
 import { useAuth } from "@clerk/nextjs";
-import { getDates } from "@utils";
-import { useRef } from "react";
+import { Episode } from "@types";
+
+import { getScheduleTweet } from "@utils";
+import { getDates, getScheduleTime } from "@utils";
+import { useEffect, useRef, useState } from "react";
 
 import { VscCopy } from "react-icons/vsc";
 
-const calendar = ({ episode }: { episode: any }) => {
+const calendar = ({ episode }: { episode: Episode }) => {
 	const { userId } = useAuth();
 	const title = `LWJ: ${episode.title} with ${episode.guest.name}`;
 
 	const titleRef = useRef<HTMLInputElement | null>(null);
 	const descRef = useRef<HTMLTextAreaElement | null>(null);
 
-	console.log("episode date", episode.date);
+	const [twoWeeks, setTwoWeeks] = useState<string>("");
+	const [ninetyMinutes, setNinetyMinutes] = useState<string>("");
 
 	const { usDate, nzDate } = getDates(
 		episode.date,
@@ -23,6 +27,11 @@ const calendar = ({ episode }: { episode: any }) => {
 			navigator.clipboard.writeText(string);
 		}
 	};
+
+	useEffect(() => {
+		setTwoWeeks(getScheduleTime(episode.date, "twoWeeks"));
+		setNinetyMinutes(getScheduleTime(episode.date));
+	}, []);
 
 	return (
 		<div className="flex flex-col items-center w-3/5">
@@ -86,6 +95,59 @@ const calendar = ({ episode }: { episode: any }) => {
 						}}
 					/>
 				</button>
+			</div>
+			<div className="w-full mt-10 mb-10 flex justify-between">
+				<div className="flex flex-col items-center">
+					{twoWeeks}
+					<div className="flex ">
+						<label className="label">Two Weeks</label>
+						<VscCopy
+							className="cursor-pointer pl-1 h-8 w-8"
+							onClick={() => {
+								let tweet = getScheduleTweet(
+									"twoWeeks",
+									episode.description,
+									episode.uri
+								);
+								navigator.clipboard.writeText(tweet);
+							}}
+						/>
+					</div>
+				</div>
+				<div className="flex flex-col items-center">
+					{ninetyMinutes}
+					<div className="flex ">
+						<label className="label">90 Mins</label>
+						<VscCopy
+							className="cursor-pointer pl-1 h-8 w-8"
+							onClick={() => {
+								let tweet = getScheduleTweet(
+									"ninetyMinutes",
+									episode.description,
+									"slug goes here"
+								);
+								navigator.clipboard.writeText(tweet);
+							}}
+						/>
+					</div>
+				</div>
+				<div className="flex flex-col items-center ">
+					{usDate}
+					<div className="flex ">
+						<label className="label">Live</label>
+						<VscCopy
+							className="cursor-pointer pl-1 h-8 w-8"
+							onClick={() => {
+								let tweet = getScheduleTweet(
+									"Live",
+									episode.description,
+									"slug goes here"
+								);
+								navigator.clipboard.writeText(tweet);
+							}}
+						/>
+					</div>
+				</div>
 			</div>
 		</div>
 	);

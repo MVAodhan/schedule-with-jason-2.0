@@ -27,10 +27,12 @@ model Episode {
   tech        String?
   repo        String?
   demo        String?
+  twitter_description String?
 }
 
 model Schedule{
   id          Int     @id @default(autoincrement())
+  title       String
   date        String
   description String
   twitter_description String

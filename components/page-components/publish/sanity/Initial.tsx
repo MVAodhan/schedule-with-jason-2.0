@@ -72,7 +72,6 @@ const Initial = ({
 					}}
 				/>
 			</div>
-			<div></div>
 		</>
 	);
 };

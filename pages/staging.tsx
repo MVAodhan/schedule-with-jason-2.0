@@ -38,10 +38,8 @@ export default function Home() {
 					</div>
 					<div className="w-4/5 h-full mx-auto pt-10">
 						<div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
-							{/* {episodes !== null &&
-								episodes.map((ep) => <CardStaging key={ep.id} episode={ep} />)} */}
-
-							{episodes && episodes.map((ep) => <CardStaging key={ep.id} />)}
+							{episodes &&
+								episodes.map((ep) => <CardStaging key={ep.id} episode={ep} />)}
 						</div>
 					</div>
 				</div>

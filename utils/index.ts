@@ -120,3 +120,16 @@ ${slug}
 
 	return tweet;
 };
+
+export const getScheduleTime = (date: string, tweetType?: TTweetType) => {
+	let dt = DateTime.fromISO(date, {
+		zone: "America/Los_Angeles",
+	});
+	if (tweetType === "twoWeeks") {
+		dt = dt.minus({ week: 2 });
+	} else {
+		dt = dt.minus({ minutes: 90 });
+	}
+
+	return dt.toFormat("ff");
+};
