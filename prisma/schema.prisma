@@ -30,7 +30,7 @@ model Episode {
   twitter_description String?
 }
 
-model Schedule{
+model Schedule {
   id          Int     @id @default(autoincrement())
   title       String
   date        String

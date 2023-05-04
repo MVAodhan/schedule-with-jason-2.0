@@ -13,6 +13,8 @@ export default async function handler(
 			date: "this is the description",
 			guest_name: "this is the description",
 			guest_twitter: "this is the description",
+			title: "this is the title",
+			twitter_description: "this is the twitter description",
 		},
 	});
 
