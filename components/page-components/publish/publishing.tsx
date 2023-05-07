@@ -7,6 +7,21 @@ const publishing = ({ episode }: { episode: Episode }) => {
 		navigator.clipboard.writeText(text);
 	};
 
+	const getTags = (jsonString: any) => {
+		const jsonArray = JSON.parse(jsonString);
+
+		const labels = jsonArray.map((item: { label: any }) => item.label);
+
+		let tags = "";
+
+		for (let label of labels) {
+			tags = tags + `${label},`;
+		}
+		const tagsWithoutComma = tags.replace(/,\s*$/, "");
+
+		return tagsWithoutComma;
+	};
+
 	const formatLinks = () => {
 		if (episode?.links && episode.links.length > 1) {
 			let linkSet = new Set();
@@ -50,6 +65,9 @@ Chapters:
 ${episode.chapters}
 `;
 
+	console.log(typeof episode.tags);
+	console.log(Boolean(episode.tags));
+
 	return (
 		<div className="flex flex-col items-center w-3/5 m-5">
 			<div className="w-full flex flex-col items-center">
@@ -73,6 +91,18 @@ ${episode.chapters}
 					}}
 				/>
 			</div>
+			{episode.tags?.trim().length > 2 && (
+				<div className="flex items-center mt-5">
+					<label>Youtube Tags</label>
+					<VscCopy
+						className="cursor-pointer pl-1 h-8 w-8"
+						// copyText(youtubeDescription);
+						onClick={() => {
+							copyText(getTags(episode.tags));
+						}}
+					/>
+				</div>
+			)}
 		</div>
 	);
 };
