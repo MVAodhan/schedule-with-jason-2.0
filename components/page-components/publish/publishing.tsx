@@ -91,7 +91,7 @@ ${episode.chapters}
 					}}
 				/>
 			</div>
-			{episode.tags?.trim().length > 2 && (
+			{episode.tags && episode.tags.length > 2 && (
 				<div className="flex items-center mt-5">
 					<label>Youtube Tags</label>
 					<VscCopy
