@@ -99,6 +99,7 @@ const calendar = ({ episode }: { episode: Episode }) => {
 				</button>
 			</div>
 			<div className="flex mt-10 items-center w-full">
+				<label>Enter a twitter description to get sceduling tweets</label>
 				<textarea
 					className="textarea textarea-bordered w-full"
 					ref={twitterDescRef}

@@ -14,5 +14,7 @@ export default async function handler(
 
 	// For each of the episodes in the Sanity api, it checks if the sanityId is in the DB array of Idsand if not, it adds it to the the DB
 
+	prisma.$disconnect();
+
 	res.status(200).json(episodes);
 }

@@ -47,9 +47,9 @@ const publishing = ({ episode }: { episode: Episode }) => {
 
 	const youtubeDescription = `
 ${episode.description}
-${episode.demo ?? `Demo ${episode.demo}`}
+${episode.demo ? `Demo ${episode.demo}` : ""}
 
-${episode.repo ?? `Repo ${episode.repo}`}
+${episode.repo ? `Repo ${episode.repo}` : ""}
 
 Upcoming episodes:
 https://lwj.dev/schedule
@@ -64,9 +64,6 @@ Chapters:
 
 ${episode.chapters}
 `;
-
-	console.log(typeof episode.tags);
-	console.log(Boolean(episode.tags));
 
 	return (
 		<div className="flex flex-col items-center w-3/5 m-5">

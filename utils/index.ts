@@ -108,11 +108,8 @@ export const getScheduleTweet = (
 		footer = "⬇️ Watch Live Here 👀";
 		slug = "https://www.twitch.tv/jlengstorf";
 	}
-
 	const tweet = `${title}
-
 ${twitter_description}
-
 
 ${footer}
 ${slug}

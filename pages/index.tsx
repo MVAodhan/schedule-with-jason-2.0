@@ -19,12 +19,11 @@ export default function Home() {
 			setEpisodes(res.data);
 		};
 		getEpisodes();
-	}, [setEpisodes]);
+	}, []);
 
 	if (!isLoaded || !isSignedIn) {
 		return <Nav />;
 	}
-
 	return (
 		<div className="w-screen h-screen">
 			<Head>
@@ -42,7 +41,7 @@ export default function Home() {
 					<div className="w-4/5 h-full mx-auto pt-10">
 						<div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
 							{episodes.map((ep) => (
-								<Card key={ep.id} episode={ep} />
+								<Card key={ep.sanityId} episode={ep} title={ep.title} />
 							))}
 						</div>
 					</div>

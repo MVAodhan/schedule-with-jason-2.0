@@ -7,17 +7,15 @@ export default async function handler(
 	req: NextApiRequest,
 	res: NextApiResponse
 ) {
-	await prisma.schedule.create({
-		data: {
-			description: "this is the description",
-			date: "this is the description",
-			guest_name: "this is the description",
-			guest_twitter: "this is the description",
-			title: "this is the title",
-			twitter_description: "this is the twitter description",
+	// Get ep from request
+	const { id } = req.body;
+	// Gets all the episodes in the DB
+	let deleted = await prisma.episode.delete({
+		where: {
+			id: id,
 		},
 	});
 
 	prisma.$disconnect();
-	res.status(200).json({});
+	res.status(200).json(deleted);
 }
