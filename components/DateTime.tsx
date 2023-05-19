@@ -3,7 +3,6 @@ import { Calendar as CalendarIcon } from "lucide-react";
 import { cn } from "../lib/utils";
 import { Temporal, toTemporalInstant } from "@js-temporal/polyfill";
 
-// eslint-disable-next-line no-undef
 Date.prototype.toTemporalInstant = toTemporalInstant;
 
 import { Calendar } from "./ui/calendar";
@@ -13,20 +12,32 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { Episode } from "@prisma/client";
 
+interface Months {
+	May: number;
+	Jun: number;
+}
+
+type MonthMap = {
+	[key: string]: number;
+};
+
 export function DateTime({ episode }: { episode: Episode }) {
 	const today = Temporal.Now.instant();
 	const [selectedDay, setSelectedDay] = useState<any>(today);
 	const router = useRouter();
-	const handleSetSelectedDay = async (e) => {
-		const months = {
+	const handleSetSelectedDay = async (date: Date | undefined) => {
+		if (!date) return;
+
+		const months: Months & MonthMap = {
 			May: 5,
 			Jun: 6,
 		};
-		const bits = e.toString().split(" ");
+		const monthName = date.toLocaleString("en", { month: "short" });
+		const monthNumber: number = months[monthName as keyof Months];
 		const pst = Temporal.ZonedDateTime.from({
-			year: bits[3],
-			month: months[bits[1]],
-			day: bits[2],
+			year: date.getFullYear(),
+			month: monthNumber,
+			day: date.getDate(),
 			hour: 9,
 			timeZone: "America/Los_Angeles",
 		});
@@ -38,6 +49,7 @@ export function DateTime({ episode }: { episode: Episode }) {
 		});
 		router.push("/");
 	};
+
 	return (
 		<Popover>
 			<PopoverTrigger asChild>
