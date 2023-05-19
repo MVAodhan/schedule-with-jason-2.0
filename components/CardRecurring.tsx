@@ -1,4 +1,4 @@
-import { Episode } from "@types";
+import { Episode } from "@prisma/client";
 import { getDates } from "@utils";
 import axios from "axios";
 import Link from "next/link";
@@ -40,7 +40,7 @@ const Card = ({ episode, title }: { episode: Episode; title: String }) => {
 				</div>
 				<div className="flex justify-between">
 					<h2 className="card-title">
-						{`${episode.title} with ${episode.guest.name}`}{" "}
+						{`${episode.title} with Jason Lengstorf`}{" "}
 					</h2>
 					<DateTime episode={episode} />
 				</div>
