@@ -14,11 +14,11 @@ export default function Home() {
 		return <Nav />;
 	}
 
-	const getData = async () => {
-		const res = await axios.get("./api/get-staging");
-		setEpisodes(res.data);
-	};
 	useEffect(() => {
+		const getData = async () => {
+			const res = await axios.get("./api/get-staging");
+			setEpisodes(res.data);
+		};
 		getData();
 	}, []);
 

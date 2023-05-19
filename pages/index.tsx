@@ -4,19 +4,24 @@ import Nav from "@components/Nav";
 import { episodesAtom } from "stores";
 import { useAtom } from "jotai";
 import Card from "@components/Card";
-import { useEffect } from "react";
+import CardRecurring from "@components/CardRecurring";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useUser } from "@clerk/nextjs";
 
 export default function Home() {
 	const { isLoaded, isSignedIn } = useUser();
 	const [episodes, setEpisodes] = useAtom(episodesAtom);
+	const [recurringEpisode, setRecurringEpisode] = useState<any>();
 
 	useEffect(() => {
 		const getEpisodes = async () => {
 			const res = await axios.get("/api/get");
-			console.log("res.data", res.data);
 			setEpisodes(res.data);
+			const recurring = res.data.filter(
+				(ep: { title: string }) => ep.title === "Building Web Demos + Q&A"
+			);
+			setRecurringEpisode(recurring);
 		};
 		getEpisodes();
 	}, []);
@@ -24,6 +29,7 @@ export default function Home() {
 	if (!isLoaded || !isSignedIn) {
 		return <Nav />;
 	}
+
 	return (
 		<div className="w-screen h-screen">
 			<Head>
@@ -39,10 +45,23 @@ export default function Home() {
 						<h2 className="text-3xl ">Episodes in Sanity</h2>
 					</div>
 					<div className="w-4/5 h-full mx-auto pt-10">
+						<div className="bg-red-100 flex flex-col items-center mb-10">
+							<h2>Recurring Episode</h2>
+							{recurringEpisode && (
+								<CardRecurring
+									episode={recurringEpisode[0]}
+									title={recurringEpisode[0].title}
+								/>
+							)}
+						</div>
 						<div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
-							{episodes.map((ep) => (
-								<Card key={ep.sanityId} episode={ep} title={ep.title} />
-							))}
+							{episodes.map((ep) => {
+								if (ep.title !== "Building Web Demos + Q&A") {
+									return (
+										<Card key={ep.sanityId} episode={ep} title={ep.title} />
+									);
+								}
+							})}
 						</div>
 					</div>
 				</div>

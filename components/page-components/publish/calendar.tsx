@@ -72,6 +72,15 @@ const calendar = ({ episode }: { episode: Episode }) => {
 					/>
 				</div>
 				<div className="mt-10 flex justify-center items-center">
+					Guest Twitter
+					<VscCopy
+						className="cursor-pointer pl-1 h-8 w-8"
+						onClick={() => {
+							navigator.clipboard.writeText(episode.guest.twitter);
+						}}
+					/>
+				</div>
+				<div className="mt-10 flex justify-center items-center">
 					Location
 					<VscCopy
 						className="cursor-pointer pl-1 h-8 w-8"
@@ -98,8 +107,11 @@ const calendar = ({ episode }: { episode: Episode }) => {
 					/>
 				</button>
 			</div>
-			<div className="flex mt-10 items-center w-full">
-				<label>Enter a twitter description to get sceduling tweets</label>
+
+			<div className="flex flex-col mt-10 items-center w-full">
+				<label className="mb-10">
+					Enter a twitter description to get sceduling tweets
+				</label>
 				<textarea
 					className="textarea textarea-bordered w-full"
 					ref={twitterDescRef}
@@ -107,22 +119,13 @@ const calendar = ({ episode }: { episode: Episode }) => {
 						setTwitterText(twitterDescRef.current?.value as string)
 					}
 				></textarea>
-
-				<button disabled={userId !== "user_2MwVLo4xFl6ch7xCP1Z4PIuFjpV"}>
-					<VscCopy
-						className="cursor-pointer pl-1 h-8 w-8"
-						onClick={() => {
-							copyValue(twitterDescRef);
-						}}
-					/>
-				</button>
 			</div>
 			{twitterText.length > 1 && (
 				<>
 					<div className="w-full mt-10 mb-10 flex justify-between">
 						<div className="flex flex-col items-center">
 							{twoWeeks}
-							<div className="flex ">
+							<div className="flex">
 								<label className="label">Two Weeks</label>
 								<VscCopy
 									className="cursor-pointer pl-1 h-8 w-8"
