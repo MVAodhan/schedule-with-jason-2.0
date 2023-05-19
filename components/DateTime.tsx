@@ -52,13 +52,12 @@ export function DateTime({ episode }: { episode: Episode }) {
 					Select Next Solo Episode Date
 				</Button>
 			</PopoverTrigger>
-			<PopoverContent className="w-auto p-0">
+			<PopoverContent>
 				<Calendar
 					mode="single"
 					selected={selectedDay}
 					onSelect={handleSetSelectedDay}
 					initialFocus
-					showOutsideDays
 				/>
 			</PopoverContent>
 		</Popover>
